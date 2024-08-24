@@ -50,17 +50,17 @@ using namespace scythe;
 double user_fun_eval(SEXP fun, SEXP theta, SEXP myframe) {
   
   SEXP R_fcall;
-  if(!isFunction(fun)) error("`fun' must be a function");
-  if(!isEnvironment(myframe)) error("myframe must be an environment");
+  if(!isFunction(fun)) Rf_error("`fun' must be a function");
+  if(!isEnvironment(myframe)) Rf_error("myframe must be an environment");
   PROTECT(R_fcall = lang2(fun, R_NilValue));
   SETCADR(R_fcall, theta);
   SEXP funval;
   PROTECT(funval = eval(R_fcall, myframe));
 
-  if (!isReal(funval)) error("`fun' must return a double");
+  if (!isReal(funval)) Rf_error("`fun' must return a double");
   double fv = REAL(funval)[0];
-  if (fv == R_PosInf) error("`fun' returned +Inf");
-  if (R_IsNaN(fv) || R_IsNA(fv)) error("`fun' returned NaN or NA");
+  if (fv == R_PosInf) Rf_error("`fun' returned +Inf");
+  if (R_IsNaN(fv) || R_IsNA(fv)) Rf_error("`fun' returned NaN or NA");
   UNPROTECT(2);
   return fv;
 }
