@@ -66,7 +66,7 @@ Description: Contains functions to perform Bayesian
 License: GPL-3
 SystemRequirements: gcc (>= 4.0)
 URL: https://CRAN.R-project.org/package=MCMCpack
-Packaged: 2024-08-24 03:46:38 UTC; park
+Packaged: 2024-08-26 14:40:02 UTC; park
 NeedsCompilation: yes
 Repository: CRAN
 RoxygenNote: 7.3.1
